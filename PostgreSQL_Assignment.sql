@@ -3,3 +3,8 @@ CREATE TABLE rangers (
     name TEXT,
     region TEXT
 );
+
+INSERT INTO rangers (name, region) VALUES 
+    ('Alice Green', 'Northern Hills'),
+    ('Bob White', 'River Delta'),
+    ('Carol King', 'Mountain Range');
