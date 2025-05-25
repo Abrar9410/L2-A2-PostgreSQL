@@ -79,3 +79,20 @@ ORDER BY sighting_time DESC LIMIT 2;
 UPDATE species
     SET conservation_status = 'Historic'
     WHERE EXTRACT(YEAR FROM discovery_date) < 1800;
+
+
+-- Problem 8
+CREATE OR REPLACE FUNCTION period_of_day(date_time TIMESTAMP)
+RETURNS TEXT
+LANGUAGE PLPGSQL
+AS
+$$
+    BEGIN
+        IF date_time::TIME < '12:00:00' THEN RETURN 'Morning';
+        ELSIF date_time::TIME BETWEEN '12:00:00' AND '17:00:00' THEN RETURN 'Afternoon';
+        ELSE RETURN 'Evening';
+        END IF;
+    END
+$$
+
+SELECT sighting_id, period_of_day (sighting_time) AS time_of_day FROM sightings;
