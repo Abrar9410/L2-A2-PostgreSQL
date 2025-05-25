@@ -33,7 +33,7 @@ CREATE TABLE sightings (
 );
 
 INSERT INTO sightings (ranger_id, species_id, sighting_time, location, notes) VALUES
-    (1,1, '2024-05-10 07:45:00', 'Peak Ridge', 'Camera trap image captured'),
+    (1, 1, '2024-05-10 07:45:00', 'Peak Ridge', 'Camera trap image captured'),
     (2, 2, '2024-05-12 16:20:00', 'Bankwood Area', 'Juvenile seen'),
     (3, 3, '2014-05-15 09:10:00', 'Bamboo Grove East', 'Feeding observed'),
     (2, 1, '2024-05-18 18:30:00', 'Snowfall Pass', NULL);
@@ -50,3 +50,9 @@ SELECT COUNT(DISTINCT species_id) AS unique_species_count FROM sightings;
 -- Problem 3
 SELECT * FROM sightings
     WHERE location LIKE '%Pass%';
+
+
+-- Problem 4
+SELECT name, total_sightings FROM rangers
+    JOIN (SELECT ranger_id, COUNT(*) AS total_sightings FROM sightings GROUP BY ranger_id) AS counts_by_id
+    ON rangers.ranger_id = counts_by_id.ranger_id;
