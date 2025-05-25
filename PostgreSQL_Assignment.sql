@@ -35,7 +35,7 @@ CREATE TABLE sightings (
 INSERT INTO sightings (ranger_id, species_id, sighting_time, location, notes) VALUES
     (1, 1, '2024-05-10 07:45:00', 'Peak Ridge', 'Camera trap image captured'),
     (2, 2, '2024-05-12 16:20:00', 'Bankwood Area', 'Juvenile seen'),
-    (3, 3, '2014-05-15 09:10:00', 'Bamboo Grove East', 'Feeding observed'),
+    (3, 3, '2024-05-15 09:10:00', 'Bamboo Grove East', 'Feeding observed'),
     (2, 1, '2024-05-18 18:30:00', 'Snowfall Pass', NULL);
 
 
@@ -59,7 +59,17 @@ SELECT name, total_sightings FROM rangers
 
 
 -- Problem 5
-SELECT common_name FROM species
+SELECT common_name AS never_been_sighted FROM species
     FULL JOIN sightings
     ON species.species_id = sightings.species_id
 WHERE sighting_time IS NULL;
+
+
+-- Problem 6
+SELECT common_name, sighting_time, name FROM
+    (
+        SELECT * FROM sightings
+            JOIN species ON sightings.species_id = species.species_id
+            JOIN rangers ON sightings.ranger_id = rangers.ranger_id
+    )
+ORDER BY sighting_time DESC LIMIT 2;
