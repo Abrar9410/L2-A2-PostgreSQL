@@ -20,8 +20,8 @@ PostgreSQL ডেটা কোয়েরি এবং পরিচালনা
 
 ### পারফরমেন্স এবং স্কেলেবিলিটি (Performance & Scalability):
 PostgreSQL বিপুল পরিমাণে ডেটা এবং সমসাময়িক লেনদেন পরিচালনা করার জন্য ডিজাইন করা হয়েছে, যা এটিকে বৃহৎ অ্যাপ্লিকেশনের জন্য উপযুক্ত করে তোলে।
----
 
+---
 
 ## 2. What is the difference between the VARCHAR and CHAR data types?
 
@@ -141,3 +141,56 @@ LIMIT 10 OFFSET 10;
 SELECT * FROM students
 LIMIT 10 OFFSET 20;
 ```
+---
+
+## 5. How can you modify data using UPDATE statements?
+
+`UPDATE` স্টেটমেন্ট ব্যবহার করে ডেটাবেজের বিদ্যমান (existing) রেকর্ডের এক বা একাধিক কলামের মান পরিবর্তন করা যায়।
+
+সিনট্যাক্স (গঠন):
+
+```sql
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+
+- table_name – যে টেবিলের ডেটা আপডেট করতে চাই।
+
+- `SET` – কোন কোন কলামে নতুন মান বসবে।
+
+- `WHERE` – কোন রেকর্ডগুলো আপডেট হবে তা নির্ধারণ করে (খুব গুরুত্বপূর্ণ)।
+
+উদাহরণ:
+ধরা যাক, একটি students নামক টেবিল আছে:
+
+| id | name  | age |
+| -- | ----- | --- |
+| 1  | Rahim | 20  |
+| 2  | Karim | 22  |
+
+
+যদি আমরা id = 1 এর বয়স ২০ থেকে ২১ করতে চাই:
+
+```sql
+
+UPDATE students
+SET age = 21
+WHERE id = 1;
+```
+
+এখন Rahim এর বয়স হয়ে যাবে ২১।
+
+### গুরুত্বপূর্ণ নোট:
+সবসময় WHERE ক্লজ ব্যবহার করা উচিত, না হলে ঐ কলামের সকল রেকর্ড আপডেট হয়ে যাবে।
+
+উদাহরণ (বিপজ্জনক):
+
+```sql
+
+UPDATE students
+SET age = 25;
+```
+
+এটি টেবিলের সব ছাত্রের বয়স ২৫ করে দেবে!
