@@ -1,3 +1,5 @@
+-- Table creation and Sample data insertion
+
 CREATE TABLE rangers (
     ranger_id SERIAL UNIQUE PRIMARY KEY,
     name TEXT,
@@ -95,7 +97,7 @@ $$
     END
 $$
 
-SELECT sighting_id, period_of_day (sighting_time) AS time_of_day FROM sightings;
+SELECT sighting_id, period_of_day(sighting_time) AS time_of_day FROM sightings;
 
 
 -- Problem 9
