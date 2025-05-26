@@ -20,7 +20,7 @@ PostgreSQL ডেটা কোয়েরি এবং পরিচালনা
 
 পারফরমেন্স এবং স্কেলেবিলিটি:
 PostgreSQL বিপুল পরিমাণে ডেটা এবং সমসাময়িক লেনদেন পরিচালনা করার জন্য ডিজাইন করা হয়েছে, যা এটিকে বৃহৎ অ্যাপ্লিকেশনের জন্য উপযুক্ত করে তোলে।
----
+
 ## What is the difference between the VARCHAR and CHAR data types?
 
 VARCHAR (Variable Character):
